@@ -1,0 +1,4 @@
+Reading additional input from stdin...
+2026-05-30T15:46:19.247573Z ERROR codex_core::tools::router: error=failed to parse function arguments: missing field `cmd` at line 1 column 52
+2026-05-30T15:47:51.735864Z ERROR codex_core::tools::router: error=failed to parse function arguments: invalid type: sequence, expected a string at line 1 column 7
+2026-05-30T15:49:02.802328Z ERROR codex_core::tools::router: error=failed to parse function arguments: invalid type: sequence, expected a string at line 1 column 7

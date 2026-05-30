@@ -1,0 +1,7 @@
+{
+  "task_id": "task_001",
+  "session_id": "session_001",
+  "agent_exit_code": 0,
+  "duration_seconds": 363.0,
+  "status": "success"
+}

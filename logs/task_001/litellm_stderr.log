@@ -1,0 +1,50 @@
+[92m15:45:05 - LiteLLM Proxy:ERROR[0m: guardrail_registry.py:185 - Error processing litellm.proxy.guardrails.guardrail_hooks.javelin: unsupported operand type(s) for |: '_TypedDictMeta' and '_TypedDictMeta'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/dist-packages/litellm/proxy/guardrails/guardrail_registry.py", line 173, in get_guardrail_class_from_hooks
+    module = importlib.import_module(module_path)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 790, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/usr/local/lib/python3.9/dist-packages/litellm/proxy/guardrails/guardrail_hooks/javelin/__init__.py", line 5, in <module>
+    from .javelin import JavelinGuardrail
+  File "/usr/local/lib/python3.9/dist-packages/litellm/proxy/guardrails/guardrail_hooks/javelin/javelin.py", line 16, in <module>
+    from litellm.types.proxy.guardrails.guardrail_hooks.javelin import (
+  File "/usr/local/lib/python3.9/dist-packages/litellm/types/proxy/guardrails/guardrail_hooks/javelin.py", line 78, in <module>
+    class JavelinGuardResponse(TypedDict):
+  File "/usr/local/lib/python3.9/dist-packages/litellm/types/proxy/guardrails/guardrail_hooks/javelin.py", line 82, in JavelinGuardResponse
+    JavelinPromptInjectionAssessment
+TypeError: unsupported operand type(s) for |: '_TypedDictMeta' and '_TypedDictMeta'
+[92m15:45:05 - LiteLLM Proxy:ERROR[0m: guardrail_registry.py:185 - Error processing litellm.proxy.guardrails.guardrail_hooks.aim: unsupported operand type(s) for |: 'type' and 'NoneType'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/dist-packages/litellm/proxy/guardrails/guardrail_registry.py", line 173, in get_guardrail_class_from_hooks
+    module = importlib.import_module(module_path)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 790, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/usr/local/lib/python3.9/dist-packages/litellm/proxy/guardrails/guardrail_hooks/aim/__init__.py", line 5, in <module>
+    from .aim import AimGuardrail
+  File "/usr/local/lib/python3.9/dist-packages/litellm/proxy/guardrails/guardrail_hooks/aim/aim.py", line 42, in <module>
+    class AimGuardrail(CustomGuardrail):
+  File "/usr/local/lib/python3.9/dist-packages/litellm/proxy/guardrails/guardrail_hooks/aim/aim.py", line 187, in AimGuardrail
+    ) -> dict | None:
+TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'
+[92m15:45:05 - LiteLLM Proxy:ERROR[0m: guardrail_registry.py:116 - Error processing litellm.proxy.guardrails.guardrail_hooks.javelin: unsupported operand type(s) for |: '_TypedDictMeta' and '_TypedDictMeta'
+[92m15:45:05 - LiteLLM Proxy:ERROR[0m: guardrail_registry.py:116 - Error processing litellm.proxy.guardrails.guardrail_hooks.aim: unsupported operand type(s) for |: 'type' and 'NoneType'
+INFO:     Started server process [9]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:4000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [9]

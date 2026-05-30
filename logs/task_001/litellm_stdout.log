@@ -1,0 +1,102 @@
+
+   ██╗     ██╗████████╗███████╗██╗     ██╗     ███╗   ███╗
+   ██║     ██║╚══██╔══╝██╔════╝██║     ██║     ████╗ ████║
+   ██║     ██║   ██║   █████╗  ██║     ██║     ██╔████╔██║
+   ██║     ██║   ██║   ██╔══╝  ██║     ██║     ██║╚██╔╝██║
+   ███████╗██║   ██║   ███████╗███████╗███████╗██║ ╚═╝ ██║
+   ╚══════╝╚═╝   ╚═╝   ╚══════╝╚══════╝╚══════╝╚═╝     ╚═╝
+
+
+[1;37m#------------------------------------------------------------#[0m
+[1;37m#                                                            #[0m
+[1;37m#            'This product would be better if...'             #[0m
+[1;37m#        https://github.com/BerriAI/litellm/issues/new        #[0m
+[1;37m#                                                            #[0m
+[1;37m#------------------------------------------------------------#[0m
+
+ Thank you for using LiteLLM! - Krrish & Ishaan
+
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+
+
+[32mLiteLLM: Proxy initialized with Config, Set models:[0m
+[32m    *[0m
+INFO:     127.0.0.1:44676 - "GET /health/liveliness HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44682 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51784 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51800 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51806 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51818 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51824 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50858 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50866 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50878 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50880 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50892 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50900 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50914 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46902 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46908 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46914 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46920 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44406 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44412 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54766 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54780 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54788 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58464 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58466 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41262 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41264 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41270 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44176 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59928 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48914 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48920 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48936 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48944 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53630 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60008 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60018 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60034 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60042 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60048 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35592 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35596 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35604 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32786 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38202 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38216 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59630 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59632 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59638 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42564 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47848 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47860 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47866 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47878 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35802 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35816 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35824 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52766 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52782 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49162 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49166 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34192 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34194 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34202 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46922 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46932 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53542 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53552 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53554 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53558 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39120 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39136 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39142 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45136 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45146 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45160 - "POST /v1/responses HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45170 - "POST /v1/responses HTTP/1.1" 200 OK

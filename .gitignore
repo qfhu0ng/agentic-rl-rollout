@@ -5,17 +5,18 @@ __pycache__/
 *.pyo
 *.egg-info/
 
-# Logs & trajectory data (large, may contain API call records)
-logs/
+# Failed / intermediate runs (keep only task_001)
+logs/task_001_first_attempt/
 
-# Cloned task repos
+# Cloned task repos (public flask repo, reconstructable via README)
 workspace/
-
-# SWE-bench task files (contain problem statements, not secrets but large)
-task/
 
 # macOS
 .DS_Store
 
 # Docker build cache artifacts
 *.tar
+
+# Secrets — should never exist as files, but guard anyway
+.env
+*.key
