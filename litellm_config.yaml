@@ -1,0 +1,22 @@
+# LiteLLM Proxy config.
+#
+# - model_name "*" with model "openai/*" is the LiteLLM wildcard passthrough:
+#   any model name the client sends (e.g. "gpt-5-codex", "gpt-4o-mini") is
+#   forwarded to OpenAI as-is.
+# - callbacks points to the module attribute holding our RolloutLogger
+#   instance (custom_callbacks.proxy_handler_instance).
+# - general_settings.master_key is the proxy-level key Codex uses to call
+#   LiteLLM. OPENAI_API_KEY is only used by LiteLLM to call OpenAI.
+
+model_list:
+  - model_name: "*"
+    litellm_params:
+      model: openai/*
+      api_key: os.environ/OPENAI_API_KEY
+
+litellm_settings:
+  callbacks: custom_callbacks.proxy_handler_instance
+  drop_params: true
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY

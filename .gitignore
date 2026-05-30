@@ -1,0 +1,21 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Logs & trajectory data (large, may contain API call records)
+logs/
+
+# Cloned task repos
+workspace/
+
+# SWE-bench task files (contain problem statements, not secrets but large)
+task/
+
+# macOS
+.DS_Store
+
+# Docker build cache artifacts
+*.tar

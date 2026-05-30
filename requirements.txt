@@ -1,0 +1,4 @@
+litellm[proxy]
+fastapi
+uvicorn
+httpx
