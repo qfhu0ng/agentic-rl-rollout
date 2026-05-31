@@ -1,0 +1,43 @@
+diff --git a/pylint/lint/expand_modules.py b/pylint/lint/expand_modules.py
+index 5cacc0371..ff869bbb5 100644
+--- a/pylint/lint/expand_modules.py
++++ b/pylint/lint/expand_modules.py
+@@ -52,11 +52,33 @@ def _is_ignored_file(
+     ignore_list_re: list[Pattern[str]],
+     ignore_list_paths_re: list[Pattern[str]],
+ ) -> bool:
+-    basename = os.path.basename(element)
+-    return (
+-        basename in ignore_list
+-        or _is_in_ignore_list_re(basename, ignore_list_re)
+-        or _is_in_ignore_list_re(element, ignore_list_paths_re)
++    normalized_path = os.path.normpath(os.path.abspath(element))
++    basename = os.path.basename(normalized_path)
++
++    if basename in ignore_list or _is_in_ignore_list_re(basename, ignore_list_re):
++        return True
++
++    path_candidates: set[str] = set()
++
++    def _add_candidate(path: str) -> None:
++        path_candidates.add(path)
++        if os.altsep:
++            path_candidates.add(path.replace(os.sep, os.altsep))
++        path_candidates.add(path.replace(os.sep, "/"))
++
++    _add_candidate(normalized_path)
++
++    try:
++        relpath = os.path.relpath(normalized_path)
++    except ValueError:
++        relpath = None
++    if relpath:
++        _add_candidate(relpath)
++        _add_candidate(os.path.join(".", relpath))
++
++    return any(
++        _is_in_ignore_list_re(candidate, ignore_list_paths_re)
++        for candidate in path_candidates
+     )
+ 
+ 

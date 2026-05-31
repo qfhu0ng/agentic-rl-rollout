@@ -1,0 +1,15 @@
+{
+  "instance_id": "pylint-dev__pylint-7080",
+  "has_patch": true,
+  "patch_bytes": 1416,
+  "modified_files": [
+    "pylint/lint/expand_modules.py"
+  ],
+  "modified_product_files": [
+    "pylint/lint/expand_modules.py"
+  ],
+  "modified_test_files": [],
+  "untracked_files": [],
+  "has_untracked_files": false,
+  "patch_status": "has_patch"
+}

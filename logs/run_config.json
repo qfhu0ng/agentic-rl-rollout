@@ -1,0 +1,16 @@
+{
+  "model": "gpt-5-codex",
+  "sandbox": "danger-full-access",
+  "image": "one-task-litellm-codex-logger:latest",
+  "image_id": "sha256:88fa92aeae8a2791facf6dc03cb1228c08877241eb05ad8d77d6cf8a79bf1937",
+  "prompt_hash": "e5d44bf22c5513a4",
+  "prompt": "Read /task/task.md for the coding task. The repository to fix is at /workspace (already checked out at the right commit). Inspect the codebase, implement the fix, and run the project's own tests to verify.\n\nThis is a large codebase: consider using the multi_agent_v1 tool to spawn a sub-agent to explore the repo and locate the relevant code, so the main thread can focus on implementing and testing the fix.\n\nREQUIREMENTS (hard constraints):\n- You MUST implement a concrete code fix. Do not stop with analysis or ask for clarification or confirmation.\n- Make your best engineering decision and leave the source tree modified with your fix.\n- Do NOT edit test files; fix the underlying product code.\n- Run targeted verification if feasible before finishing.",
+  "timeout": 1800,
+  "max_workers": 3,
+  "started_at": "2026-05-31T18:07:28.566522+08:00",
+  "tasks": [
+    "sympy__sympy-21171",
+    "pytest-dev__pytest-7490",
+    "pylint-dev__pylint-7080"
+  ]
+}

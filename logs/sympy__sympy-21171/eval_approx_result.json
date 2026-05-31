@@ -1,0 +1,50 @@
+{
+  "task_id": "sympy__sympy-21171",
+  "eval_source": "approx",
+  "patch_status": null,
+  "test_patch_apply_ok": true,
+  "install_ok": true,
+  "eval_status": "ok",
+  "resolved": "FAIL",
+  "baseline": {
+    "test_latex_SingularityFunction": "fail"
+  },
+  "fail_to_pass": {
+    "test_latex_SingularityFunction": "fail"
+  },
+  "pass_to_pass": {
+    "summary": {
+      "passed": 20,
+      "total": 20
+    },
+    "sampled": true,
+    "limit": "20",
+    "results": {
+      "test_printmethod": "pass",
+      "test_latex_basic": "pass",
+      "test_latex_builtins": "pass",
+      "test_latex_cycle": "pass",
+      "test_latex_permutation": "pass",
+      "test_latex_Float": "pass",
+      "test_latex_vector_expressions": "pass",
+      "test_latex_symbols": "pass",
+      "test_latex_functions": "pass",
+      "test_function_subclass_different_name": "pass",
+      "test_hyper_printing": "pass",
+      "test_latex_bessel": "pass",
+      "test_latex_fresnel": "pass",
+      "test_latex_brackets": "pass",
+      "test_latex_indexed": "pass",
+      "test_latex_derivatives": "pass",
+      "test_latex_subs": "pass",
+      "test_latex_integrals": "pass",
+      "test_latex_sets": "pass",
+      "test_latex_SetExpr": "pass"
+    }
+  },
+  "test_files": [
+    "sympy/printing/tests/test_latex.py"
+  ],
+  "notes": [],
+  "duration_seconds": 27.9
+}

@@ -8,15 +8,21 @@ __pycache__/
 # Failed / intermediate runs (keep only task_001)
 logs/task_001_first_attempt/
 
-# Per-task run outputs are large and fully regenerable via the pipeline.
-# task_001 is kept as the committed example trajectory (+ its session_graph /
-# rollouts showing the structured-artifact format).
-logs/sympy__sympy-21171/
-logs/pytest-dev__pytest-7490/
-logs/pylint-dev__pylint-7080/
-logs/batch_results.jsonl
-logs/run_config.json
-logs/summary.json
+# Commit the trajectories + structured artifacts (requests.jsonl, model.patch,
+# patch_meta, eval_*_result, session_graph, rollouts, run_meta) + the reports.
+# Exclude only noisy/unredacted raw process logs and the predictions scratch file.
+logs/*/litellm_stdout.log
+logs/*/litellm_stderr.log
+logs/*/docker_stdout.log
+logs/*/docker_stderr.log
+logs/*/grade_docker_stdout.log
+logs/*/grade_docker_stderr.log
+logs/*/agent_stderr.log
+logs/*/eval_install_stdout.log
+logs/*/eval_install_pytest.log
+logs/*/eval_apply.log
+logs/*/eval_model_apply.log
+logs/*/eval_tests/
 logs/predictions.jsonl
 
 # Cloned task repos (reconstructable via prepare_workspaces.py)

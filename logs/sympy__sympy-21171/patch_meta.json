@@ -1,0 +1,15 @@
+{
+  "instance_id": "sympy__sympy-21171",
+  "has_patch": true,
+  "patch_bytes": 743,
+  "modified_files": [
+    "sympy/printing/latex.py"
+  ],
+  "modified_product_files": [
+    "sympy/printing/latex.py"
+  ],
+  "modified_test_files": [],
+  "untracked_files": [],
+  "has_untracked_files": false,
+  "patch_status": "has_patch"
+}

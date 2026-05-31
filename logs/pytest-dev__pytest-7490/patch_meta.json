@@ -1,0 +1,15 @@
+{
+  "instance_id": "pytest-dev__pytest-7490",
+  "has_patch": true,
+  "patch_bytes": 681,
+  "modified_files": [
+    "src/_pytest/nodes.py"
+  ],
+  "modified_product_files": [
+    "src/_pytest/nodes.py"
+  ],
+  "modified_test_files": [],
+  "untracked_files": [],
+  "has_untracked_files": false,
+  "patch_status": "has_patch"
+}

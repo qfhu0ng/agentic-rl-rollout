@@ -1,0 +1,27 @@
+{
+  "task_id": "pytest-dev__pytest-7490",
+  "eval_source": "approx",
+  "patch_status": null,
+  "test_patch_apply_ok": false,
+  "install_ok": false,
+  "eval_status": "install_failed",
+  "resolved": "unknown",
+  "baseline": {},
+  "fail_to_pass": {},
+  "pass_to_pass": {
+    "summary": {
+      "passed": 0,
+      "total": 0
+    },
+    "sampled": true,
+    "limit": "20",
+    "results": {}
+  },
+  "test_files": [
+    "testing/test_skipping.py"
+  ],
+  "notes": [
+    "install_cmd rc=1, pytest available=False"
+  ],
+  "duration_seconds": 17.7
+}

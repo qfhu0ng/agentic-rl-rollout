@@ -1,0 +1,17 @@
+diff --git a/src/_pytest/nodes.py b/src/_pytest/nodes.py
+index 560548aea..12dd343d1 100644
+--- a/src/_pytest/nodes.py
++++ b/src/_pytest/nodes.py
+@@ -282,6 +282,12 @@ class Node(metaclass=NodeMeta):
+         else:
+             self.own_markers.insert(0, marker_.mark)
+ 
++        if marker_.name == "xfail":
++            from _pytest.skipping import evaluate_xfail_marks
++            from _pytest.skipping import xfailed_key
++
++            self._store[xfailed_key] = evaluate_xfail_marks(self)  # type: ignore[arg-type]
++
+     def iter_markers(self, name: Optional[str] = None) -> Iterator[Mark]:
+         """
+         :param name: if given, filter the results by the name attribute

@@ -1,0 +1,16 @@
+{
+  "instance_id": "pylint-dev__pylint-7080",
+  "task_hash": "fe04de3b45d4b63f",
+  "prompt_hash": "e5d44bf22c5513a4",
+  "model": "gpt-5-codex",
+  "image_id": "sha256:88fa92aeae8a2791facf6dc03cb1228c08877241eb05ad8d77d6cf8a79bf1937",
+  "sandbox": "danger-full-access",
+  "container": "agentic-rollout-pylint-dev__pylint-7080",
+  "started_at": "2026-05-31T18:07:28.566522+08:00",
+  "ended_at": "2026-05-31T18:16:43.059060+08:00",
+  "status": "success",
+  "exit_code": 0,
+  "timed_out": false,
+  "duration_seconds": 554.4,
+  "patch_status": "has_patch"
+}
