@@ -8,7 +8,18 @@ __pycache__/
 # Failed / intermediate runs (keep only task_001)
 logs/task_001_first_attempt/
 
-# Cloned task repos (public flask repo, reconstructable via README)
+# Per-task run outputs are large and fully regenerable via the pipeline.
+# task_001 is kept as the committed example trajectory (+ its session_graph /
+# rollouts showing the structured-artifact format).
+logs/sympy__sympy-21171/
+logs/pytest-dev__pytest-7490/
+logs/pylint-dev__pylint-7080/
+logs/batch_results.jsonl
+logs/run_config.json
+logs/summary.json
+logs/predictions.jsonl
+
+# Cloned task repos (reconstructable via prepare_workspaces.py)
 workspace/
 
 # macOS

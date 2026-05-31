@@ -6,6 +6,7 @@ Secrets are recursively redacted before serialization.
 
 from __future__ import annotations
 
+import itertools
 import json
 import os
 import re
@@ -88,6 +89,26 @@ def _redact(obj: Any, _depth: int = 0) -> Any:
 # Safe JSON serialization
 # ---------------------------------------------------------------------------
 
+# LiteLLM-internal bookkeeping keys that nest the FULL prior request/response
+# (incl. their own copy of these keys) into every call's litellm_params, growing
+# ~5x per turn. They carry zero trajectory signal; pruning them keeps input /
+# response_obj / tools / usage 100% intact while stopping the exponential blowup.
+_PRUNE_KEYS = {"previous_models", "litellm_metadata"}
+
+
+def _prune_internal(obj: Any, _depth: int = 0) -> Any:
+    """Recursively drop _PRUNE_KEYS (applied to kwargs only, never to the
+    trajectory fields)."""
+    if _depth > 25:
+        return obj
+    if isinstance(obj, dict):
+        return {k: _prune_internal(v, _depth + 1)
+                for k, v in obj.items() if k not in _PRUNE_KEYS}
+    if isinstance(obj, list):
+        return [_prune_internal(v, _depth + 1) for v in obj]
+    return obj
+
+
 def _to_jsonable(obj: Any, _depth: int = 0) -> Any:
     """Best-effort conversion of arbitrary objects into JSON-serializable forms."""
     if _depth > 20:
@@ -128,6 +149,71 @@ def _to_jsonable(obj: Any, _depth: int = 0) -> Any:
 
 
 # ---------------------------------------------------------------------------
+# Derived fields (for downstream session-graph / rollout reconstruction)
+# ---------------------------------------------------------------------------
+
+_SUBAGENT_TOOL_NAMES = ("multi_agent_v1", "spawn_agent", "wait_agent", "close_agent")
+_FUNCTION_CALL_TYPES = ("function_call", "custom_tool_call", "tool_call")
+
+
+def _derive_fields(jsonable_kwargs: dict[str, Any], jsonable_response: Any) -> dict[str, Any]:
+    """Extract graph-reconstruction hints from already-jsonable structures.
+
+    These fields are NOT secrets (ids / call_ids / counts), so they are computed
+    before redaction touches anything sensitive. They let build_rollouts.py avoid
+    re-walking kwargs.input / response_obj.output on every record.
+    """
+    kw = jsonable_kwargs if isinstance(jsonable_kwargs, dict) else {}
+    resp = jsonable_response if isinstance(jsonable_response, dict) else {}
+
+    # --- input side (the conversation history Codex resends each turn) ---
+    input_items = kw.get("input")
+    input_items = input_items if isinstance(input_items, list) else []
+    input_item_ids: list[str] = []
+    input_call_ids: list[str] = []
+    for it in input_items:
+        if not isinstance(it, dict):
+            continue
+        if it.get("id"):
+            input_item_ids.append(str(it["id"]))
+        if it.get("call_id"):
+            input_call_ids.append(str(it["call_id"]))
+
+    # --- output side (this turn's response) ---
+    output_items = resp.get("output")
+    output_items = output_items if isinstance(output_items, list) else []
+    output_item_ids: list[str] = []
+    output_call_ids: list[str] = []
+    function_calls: list[dict[str, Any]] = []
+    for it in output_items:
+        if not isinstance(it, dict):
+            continue
+        if it.get("id"):
+            output_item_ids.append(str(it["id"]))
+        cid = it.get("call_id")
+        if cid:
+            output_call_ids.append(str(cid))
+        if it.get("type") in _FUNCTION_CALL_TYPES:
+            function_calls.append({
+                "name": it.get("name"),
+                "call_id": cid,
+                "is_subagent": bool(it.get("name") and any(
+                    k in str(it.get("name")) for k in _SUBAGENT_TOOL_NAMES)),
+            })
+
+    return {
+        "response_id": resp.get("id"),
+        "previous_response_id": kw.get("previous_response_id"),
+        "input_item_count": len(input_items),
+        "input_item_ids": input_item_ids,
+        "input_call_ids": input_call_ids,
+        "output_item_ids": output_item_ids,
+        "output_call_ids": output_call_ids,
+        "function_calls": function_calls,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Logger
 # ---------------------------------------------------------------------------
 
@@ -142,6 +228,9 @@ class RolloutLogger(CustomLogger):
         self.log_dir.mkdir(parents=True, exist_ok=True)
         self.log_path = self.log_dir / "requests.jsonl"
         self._lock = threading.Lock()
+        # Monotonic per-session sequence number; next() on itertools.count is
+        # atomic under CPython's GIL, so no extra lock is needed.
+        self._seq_counter = itertools.count()
 
     # -- helpers ----------------------------------------------------------
 
@@ -166,6 +255,7 @@ class RolloutLogger(CustomLogger):
         return None
 
     def _write(self, record: dict[str, Any]) -> None:
+        # Full fidelity: no truncation — trajectories are logged 100% raw.
         line = json.dumps(record, ensure_ascii=False, default=str)
         with self._lock:
             with self.log_path.open("a", encoding="utf-8") as fh:
@@ -204,17 +294,34 @@ class RolloutLogger(CustomLogger):
                 usage_attr = response_obj.get("usage")
             usage = _to_jsonable(usage_attr) if usage_attr is not None else None
 
+        # Compute jsonable forms once: derive graph hints from them (pre-redaction,
+        # since ids/call_ids are not secrets), then store the redacted copies.
+        # Prune LiteLLM-internal nesting from kwargs (not trajectory data).
+        jsonable_kwargs = _prune_internal(_to_jsonable(kwargs))
+        jsonable_response = _to_jsonable(response_obj) if status == "success" else None
+        derived = _derive_fields(jsonable_kwargs, jsonable_response or {})
+
         record = {
             "task_id": self.task_id,
             "session_id": self.session_id,
+            "seq": next(self._seq_counter),
             "request_id": request_id,
             "timestamp_start": self._iso(start_time),
             "timestamp_end": self._iso(end_time),
             "latency_ms": self._latency_ms(start_time, end_time),
             "model": kwargs.get("model"),
             "call_type": kwargs.get("call_type"),
-            "kwargs": _redact(_to_jsonable(kwargs)),
-            "response_obj": _redact(_to_jsonable(response_obj)) if status == "success" else None,
+            # Derived (graph-reconstruction hints; see _derive_fields).
+            "response_id": derived["response_id"],
+            "previous_response_id": derived["previous_response_id"],
+            "input_item_count": derived["input_item_count"],
+            "input_item_ids": derived["input_item_ids"],
+            "input_call_ids": derived["input_call_ids"],
+            "output_item_ids": derived["output_item_ids"],
+            "output_call_ids": derived["output_call_ids"],
+            "function_calls": derived["function_calls"],
+            "kwargs": _redact(jsonable_kwargs),
+            "response_obj": _redact(jsonable_response) if status == "success" else None,
             "status": status,
             "error": error,
             "usage": usage if status == "success" else None,
